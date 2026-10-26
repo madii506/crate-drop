@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>CRATE</title>
-<meta name="description" content="The airdrop they promised in July 2025. Finally landing. Check your wallet.">
+<meta name="description" content="The airdrop they promised. Finally landing. Paste your wallet and open your crate.">
 <meta property="og:title" content="CRATE">
 <meta property="og:description" content="The airdrop they promised. Finally landing.">
 <meta name="twitter:card" content="summary">
@@ -14,83 +14,78 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..900&family=Geist+Mono:wght@400..700&display=swap" rel="stylesheet">
 <style>
-:root{--g:#86EFAC;--g2:#4ADE80;--g3:#22C55E;--ink:#052E16;--ink2:#14532D;--mute:#3F6B50;--tint:#F0FDF4;--line:rgba(5,46,22,.12);--w:#fff}
+:root{--g:#86EFAC;--g2:#4ADE80;--g3:#22C55E;--ink:#052E16;--ink2:#14532D;--mute:#3F6B50;--tint:#F0FDF4;--line:rgba(5,46,22,.12);--w:#fff;--red:#B91C1C}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:Geist,system-ui,sans-serif;color:var(--ink);background:var(--w);-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:inherit}
-.mono{font-family:"Geist Mono",ui-monospace,monospace}
+::selection{background:var(--g);color:var(--ink)}
 /* nav */
 .nav{position:fixed;inset:0 0 auto 0;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 22px;transition:background .25s,box-shadow .25s}
-.nav.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line)}
-.nav .links{display:flex;gap:6px}
-.nav .links a{text-decoration:none;font-weight:600;font-size:14px;padding:8px 14px;border-radius:999px;color:var(--ink);transition:background .2s}
+.nav.solid{background:rgba(255,255,255,.9);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.nav .links{display:flex;gap:4px}
+.nav .links a{text-decoration:none;font-weight:600;font-size:14px;padding:8px 14px;border-radius:999px;transition:background .2s}
 .nav .links a:hover{background:rgba(5,46,22,.08)}
-.nav .r{justify-self:end;display:flex;gap:8px}
+.nav .r{grid-column:3;justify-self:end;display:flex;gap:8px}
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 26px;border-radius:14px;border:0;font:700 16px Geist,system-ui,sans-serif;background:var(--ink);color:var(--g);text-decoration:none;cursor:pointer;box-shadow:4px 4px 0 var(--ink2);transition:transform .15s,box-shadow .15s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:52px;padding:0 26px;border-radius:14px;border:0;font:700 16px Geist,system-ui,sans-serif;background:var(--ink);color:var(--g);text-decoration:none;cursor:pointer;white-space:nowrap;box-shadow:4px 4px 0 var(--ink2);transition:transform .15s,box-shadow .15s}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink2)}
 .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink2)}
 .btn.ghost{background:var(--w);color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
 .btn.ghost:hover{box-shadow:6px 6px 0 var(--ink)}
-.btn.sm{height:38px;padding:0 14px;font-size:14px;border-radius:10px;box-shadow:3px 3px 0 var(--ink2)}
-.btn[disabled]{opacity:.75;cursor:wait;transform:none}
+.btn.sm{height:38px;padding:0 15px;font-size:14px;border-radius:10px;box-shadow:3px 3px 0 var(--ink2)}
+.btn[disabled]{opacity:.8;cursor:wait;transform:none}
 /* hero */
-.hero{position:relative;min-height:100svh;background:var(--g);overflow:hidden;display:flex;align-items:center}
+.hero{position:relative;min-height:100svh;background:var(--g);overflow:hidden;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--ink)}
 .sky{position:absolute;inset:0;pointer-events:none}
 .fall{position:absolute;top:0;will-change:transform;animation:fall linear infinite}
 .fall svg{display:block;width:100%;height:auto;transform-origin:50% 0;animation:sway ease-in-out infinite alternate}
 @keyframes fall{from{transform:translateY(-30vh)}to{transform:translateY(125vh)}}
 @keyframes sway{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
-.hero-in{position:relative;z-index:2;width:min(1180px,100%);margin:0 auto;padding:110px 28px 80px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:20px}
-.wm{font-weight:900;font-size:clamp(96px,15vw,210px);line-height:.82;letter-spacing:-.055em;color:var(--w);text-shadow:7px 7px 0 var(--ink)}
-.lede{margin-top:22px;font-size:clamp(19px,2.2vw,26px);font-weight:650;color:var(--w);text-shadow:2px 2px 0 var(--ink);letter-spacing:-.01em}
+.hero-in{position:relative;z-index:2;width:min(980px,100%);padding:100px 24px 70px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero .big{width:clamp(150px,17vw,230px);height:auto;transform-origin:50% 6%;filter:drop-shadow(10px 14px 0 rgba(5,46,22,.10));animation:dropin 1.5s cubic-bezier(.22,1.2,.36,1) both,bob 6s ease-in-out 1.5s infinite}
+@keyframes dropin{0%{transform:translateY(-110vh) rotate(-10deg)}75%{transform:translateY(10px) rotate(3deg)}100%{transform:none}}
+@keyframes bob{0%,100%{transform:rotate(0) translateY(0)}25%{transform:rotate(-3deg) translateY(4px)}75%{transform:rotate(3deg) translateY(-4px)}}
+.wm{font-weight:900;font-size:clamp(92px,15vw,200px);line-height:.8;letter-spacing:-.055em;color:var(--w);text-shadow:7px 7px 0 var(--ink);margin-top:18px}
+.lede{margin-top:20px;font-size:clamp(19px,2.3vw,27px);font-weight:650;color:var(--w);text-shadow:2px 2px 0 var(--ink);letter-spacing:-.01em}
 .lede b{color:#D1FAE5;font-weight:800}
-.ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
-.since{margin-top:34px;display:flex;align-items:baseline;gap:12px;color:var(--ink)}
-.since .n{font:800 clamp(34px,4vw,46px)/1 "Geist Mono",monospace;letter-spacing:-.04em}
-.since .t{font-weight:600;font-size:15px;max-width:230px;line-height:1.25}
-.hero-art{display:flex;justify-content:center}
-.hero-art .big{width:min(440px,100%);height:auto;animation:bob 6s ease-in-out infinite;transform-origin:50% 8%;filter:drop-shadow(12px 16px 0 rgba(5,46,22,.10))}
-@keyframes bob{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(3deg) translateY(10px)}}
-.ca{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.checker{margin-top:34px;display:flex;gap:12px;width:min(640px,100%)}
+.checker input{flex:1;min-width:0;height:58px;border-radius:15px;border:2px solid var(--ink);padding:0 18px;font:500 15.5px "Geist Mono",monospace;color:var(--ink);background:var(--w);outline:none;box-shadow:4px 4px 0 var(--ink);transition:box-shadow .15s}
+.checker input:focus{box-shadow:6px 6px 0 var(--ink)}
+.checker input::placeholder{color:#6b8f78}
+.checker .btn{height:58px}
+.err{margin-top:16px;font-weight:700;color:var(--red);background:var(--w);border:2px solid var(--ink);padding:8px 14px;border-radius:10px}
+.ca{margin-top:22px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center}
 .ca .addr{font:600 13px "Geist Mono",monospace;background:var(--w);border:2px solid var(--ink);border-radius:10px;padding:9px 12px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scroll-cue{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);z-index:2;font:600 12px "Geist Mono",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;opacity:.7}
+.scroll-cue:after{content:"";display:block;width:2px;height:26px;margin:8px auto 0;background:var(--ink);animation:cue 1.6s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(0);transform-origin:bottom}}
 /* sections */
 .band{padding:110px 28px;border-top:1px solid var(--line)}
 .band.alt{background:var(--tint)}
 .wrap{width:min(1080px,100%);margin:0 auto}
 .eyebrow{font:600 13px "Geist Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
-h2{font-size:clamp(32px,4.4vw,54px);line-height:1.02;letter-spacing:-.04em;font-weight:800;max-width:16ch}
-h2 em{font-style:normal;background:var(--g);padding:0 .12em;border-radius:.12em}
-/* checker */
-.checker{margin-top:40px;display:flex;gap:12px;max-width:760px}
-.checker input{flex:1;min-width:0;height:56px;border-radius:14px;border:2px solid var(--ink);padding:0 18px;font:500 16px "Geist Mono",monospace;color:var(--ink);background:var(--w);outline:none;box-shadow:4px 4px 0 var(--g)}
-.checker input:focus{box-shadow:4px 4px 0 var(--g3)}
-.checker .btn{height:56px}
-.err{margin-top:16px;font-weight:600;color:#B91C1C}
-.receipt{margin-top:34px;max-width:560px;background:var(--w);border:2px solid var(--ink);border-radius:18px;box-shadow:8px 8px 0 var(--ink);overflow:hidden;animation:land .55s cubic-bezier(.2,1.4,.4,1)}
-@keyframes land{from{transform:translateY(-40px);opacity:0}to{transform:none;opacity:1}}
-.r-top{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--g);border-bottom:2px solid var(--ink);font-weight:800}
-.r-top .mono{font-weight:600;font-size:13px}
-.r-body{padding:8px 20px 18px}
-.row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:15px}
-.row span:first-child{color:var(--mute);font-weight:500}
-.row span:last-child{font:600 15px "Geist Mono",monospace;text-align:right}
-.row.big{border:0;padding-top:18px}
-.row.big span:first-child{color:var(--ink);font-weight:800;font-size:17px}
-.row.big span:last-child{font-size:26px;font-weight:800}
-.row .bad{color:#B91C1C}
-.r-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:2px solid var(--ink);background:var(--tint)}
-.r-foot small{font:500 12px "Geist Mono",monospace;color:var(--mute)}
+h2{font-size:clamp(32px,4.4vw,54px);line-height:1.02;letter-spacing:-.04em;font-weight:800;max-width:18ch}
+h2 em{font-style:normal;background:var(--g);padding:0 .12em;border-radius:.12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+/* waited (live stats) */
+.stats{margin-top:50px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{border:2px solid var(--ink);border-radius:18px;padding:22px 22px 24px;background:var(--w);box-shadow:6px 6px 0 var(--ink)}
+.stat .v{font:800 clamp(30px,3.2vw,42px)/1 "Geist Mono",monospace;letter-spacing:-.05em}
+.stat .l{margin-top:12px;font-weight:600;color:var(--mute);font-size:14.5px;line-height:1.35}
+.stat.hot{background:var(--g)}
+.stat.hot .v{font-family:Geist,sans-serif;font-size:clamp(24px,2.4vw,30px);letter-spacing:-.03em;line-height:1.05}
+.stat.hot .l{color:var(--ink)}
+.note{margin-top:22px;font:500 12.5px "Geist Mono",monospace;color:var(--mute)}
+.note a{color:var(--ink)}
 /* steps */
-.steps{margin-top:50px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.step{background:var(--w);border:2px solid var(--ink);border-radius:18px;padding:24px 22px 26px;box-shadow:6px 6px 0 var(--g);transition:transform .2s,box-shadow .2s}
+.steps{margin-top:54px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+.steps:before{content:"";position:absolute;left:6%;right:6%;top:42px;border-top:2px dashed rgba(5,46,22,.35);z-index:0}
+.step{position:relative;z-index:1;background:var(--w);border:2px solid var(--ink);border-radius:18px;padding:24px 22px 26px;box-shadow:6px 6px 0 var(--g);transition:transform .2s,box-shadow .2s}
 .step:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--g2)}
-.step .k{font:800 15px "Geist Mono",monospace;width:36px;height:36px;border-radius:10px;background:var(--ink);color:var(--g);display:grid;place-items:center}
+.step .k{font:800 16px "Geist Mono",monospace;width:40px;height:40px;border-radius:12px;background:var(--ink);color:var(--g);display:grid;place-items:center}
 .step h3{margin-top:18px;font-size:21px;letter-spacing:-.02em;font-weight:800}
 .step p{margin-top:10px;color:var(--mute);font-size:15px;line-height:1.5}
-/* split */
-.split{margin-top:50px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.split{margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .card{border:2px solid var(--ink);border-radius:18px;padding:26px;background:var(--w)}
 .card.g{background:var(--g)}
 .card h3{font-size:22px;letter-spacing:-.02em;font-weight:800}
@@ -116,63 +111,89 @@ summary:after{content:"+";font:700 22px "Geist Mono",monospace;transition:transf
 details[open] summary:after{transform:rotate(45deg)}
 details p{padding:0 22px 22px;color:var(--mute);line-height:1.55;font-size:15.5px;max-width:68ch}
 /* end */
-.end{background:var(--g);text-align:center;padding:120px 28px;border-top:2px solid var(--ink);position:relative;overflow:hidden}
-.end .wm{font-size:clamp(80px,12vw,170px)}
-.end .ctas{justify-content:center}
+.end{background:var(--g);text-align:center;padding:120px 24px;border-top:2px solid var(--ink);position:relative;overflow:hidden}
+.end .wm{font-size:clamp(80px,12vw,170px);margin-top:0}
+.end .ctas{display:flex;justify-content:center;margin-top:34px}
+/* modal receipt */
+.modal{position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:20px}
+.modal[hidden]{display:none}
+.mbg{position:absolute;inset:0;background:rgba(5,46,22,.55);backdrop-filter:blur(3px);animation:fade .2s ease}
+@keyframes fade{from{opacity:0}}
+.mbox{position:relative;width:min(540px,100%);max-height:calc(100svh - 40px);overflow:auto;animation:land .6s cubic-bezier(.2,1.35,.4,1)}
+@keyframes land{from{transform:translateY(-60px) rotate(-2deg);opacity:0}to{transform:none;opacity:1}}
+.receipt{background:var(--w);border:2px solid var(--ink);border-radius:20px;box-shadow:10px 10px 0 var(--ink);overflow:hidden}
+.r-top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;background:var(--g);border-bottom:2px solid var(--ink);font-weight:800;font-size:17px}
+.r-top .mono{font:600 13px "Geist Mono",monospace}
+.r-x{width:34px;height:34px;border-radius:10px;border:2px solid var(--ink);background:var(--w);font:700 18px/1 Geist,sans-serif;cursor:pointer}
+.r-body{padding:6px 20px 16px}
+.row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.row span:first-child{color:var(--mute);font-weight:500}
+.row span:last-child{font:600 15px "Geist Mono",monospace;text-align:right}
+.row.big{border:0;padding-top:18px;align-items:baseline}
+.row.big span:first-child{color:var(--ink);font-weight:800;font-size:17px}
+.row.big span:last-child{font-size:28px;font-weight:800}
+.row .bad{color:var(--red)}
+.r-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px;border-top:2px solid var(--ink);background:var(--tint)}
+.r-foot small{font:500 12px "Geist Mono",monospace;color:var(--mute)}
+.r-empty{padding:26px 4px 10px;font-weight:600;line-height:1.5}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .rv.vis{opacity:1;transform:none}
-.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,40px);opacity:0;background:var(--ink);color:var(--g);font-weight:700;padding:12px 18px;border-radius:12px;transition:.25s;z-index:30}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,40px);opacity:0;background:var(--ink);color:var(--g);font-weight:700;padding:12px 18px;border-radius:12px;transition:.25s;z-index:50}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 @media (max-width:900px){
   .nav .links{display:none}
-  .hero-in{grid-template-columns:1fr;padding-top:96px;text-align:left}
-  .hero-art{order:-1}
-  .hero-art .big{width:min(240px,62vw)}
+  .stats{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr 1fr}
+  .steps:before{display:none}
   .split{grid-template-columns:1fr}
 }
 @media (max-width:560px){
-  .steps{grid-template-columns:1fr}
   .checker{flex-direction:column}
+  .checker input{flex:none;width:100%}
+  .checker .btn{width:100%}
   .band{padding:84px 20px}
-  .hero-in{padding-left:20px;padding-right:20px}
+  .stats,.steps{grid-template-columns:1fr}
   .r-foot{flex-direction:column;align-items:flex-start}
+  .scroll-cue{display:none}
 }
-@media (prefers-reduced-motion:reduce){.fall,.fall svg,.hero-art .big{animation:none}.rv{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.fall,.fall svg,.hero .big,.scroll-cue:after{animation:none}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <nav class="nav" id="nav">
   <span></span>
-  <div class="links"><a href="#check">Check</a><a href="#how">How it drops</a><a href="#promise">The promise</a><a href="#faq">FAQ</a></div>
-  <div class="r" id="navr"></div>
+  <div class="links"><a href="#waited">While you waited</a><a href="#how">How it drops</a><a href="#promise">The promise</a><a href="#faq">FAQ</a></div>
+  <div class="r" id="navr"><a class="btn sm" href="#top" id="navcheck">Open my crate</a></div>
 </nav>
 
 <header class="hero" id="top">
   <div class="sky" id="sky"></div>
   <div class="hero-in">
-    <div>
-      <h1 class="wm">crate</h1>
-      <p class="lede">the airdrop they promised. <b>finally landing.</b></p>
-      <div class="ctas"><a class="btn" href="#check">Check your wallet</a><a class="btn ghost" href="#how">How it drops</a></div>
-      <div class="since"><span class="n" id="days">—</span><span class="t">days since pump.fun posted “airdrop coming soon”</span></div>
-      <div class="ca" id="ca"></div>
-    </div>
-    <div class="hero-art"><svg class="big" viewBox="0 0 900 1060" role="img" aria-label="A crate on a parachute"><use href="/assets/drop.svg#drop"/></svg></div>
+    <svg class="big" viewBox="0 0 900 1060" role="img" aria-label="A crate on a parachute"><use href="/assets/drop.svg#drop"/></svg>
+    <h1 class="wm">crate</h1>
+    <p class="lede">the airdrop they promised. <b>finally landing.</b></p>
+    <form class="checker" id="f" autocomplete="off">
+      <input id="w" placeholder="Paste your Solana wallet" spellcheck="false" aria-label="Solana wallet address">
+      <button class="btn" id="go" type="submit">Open my crate</button>
+    </form>
+    <div class="err" id="err" hidden></div>
+    <div class="ca" id="ca"></div>
   </div>
+  <a class="scroll-cue" href="#waited">scroll</a>
 </header>
 
 <main>
-  <section class="band" id="check">
+  <section class="band" id="waited" hidden>
     <div class="wrap">
-      <div class="eyebrow rv">01 — Check your wallet</div>
-      <h2 class="rv">See what pump.fun <em>took</em>. Then see your crate.</h2>
-      <form class="checker rv" id="f" autocomplete="off">
-        <input id="w" placeholder="Paste a Solana wallet address" spellcheck="false" aria-label="Solana wallet address">
-        <button class="btn" id="go" type="submit">Check</button>
-      </form>
-      <div class="err" id="err" hidden></div>
-      <div id="out"></div>
+      <div class="eyebrow rv">01 — While you waited</div>
+      <h2 class="rv">They kept the fees. <em>You kept waiting.</em></h2>
+      <div class="stats">
+        <div class="stat rv"><div class="v" data-k="day">—</div><div class="l">pump.fun trading fees in the last 24 hours</div></div>
+        <div class="stat rv"><div class="v" data-k="month">—</div><div class="l">in the last 30 days</div></div>
+        <div class="stat rv"><div class="v" data-k="all">—</div><div class="l">all time</div></div>
+        <div class="stat hot rv"><div class="v">still coming soon</div><div class="l">the airdrop promised to users in July 2025</div></div>
+      </div>
+      <p class="note rv">Live from <a href="https://defillama.com/protocol/pump.fun" target="_blank" rel="noopener">DefiLlama</a>.</p>
     </div>
   </section>
 
@@ -181,9 +202,9 @@ details p{padding:0 22px 22px;color:var(--mute);line-height:1.55;font-size:15.5p
       <div class="eyebrow rv">02 — How the crate drops</div>
       <h2 class="rv">They promised. <em>We drop.</em></h2>
       <div class="steps">
-        <div class="step rv"><div class="k">1</div><h3>Check</h3><p>Paste any wallet. The checker adds up the fees it paid on pump.fun and PumpSwap, read from each trade on the chain.</p></div>
+        <div class="step rv"><div class="k">1</div><h3>Open your crate</h3><p>Paste any wallet. We add up the fees it paid on pump.fun and PumpSwap, read from each trade on the chain.</p></div>
         <div class="step rv"><div class="k">2</div><h3>Register</h3><p>At launch, sign one free message to put your wallet in the snapshot. No transaction, no approvals.</p></div>
-        <div class="step rv"><div class="k">3</div><h3>Claim your crate</h3><p>The whole dev buy goes into a public claimable airdrop, weighted by the fees you paid. Whatever is left after 30 days is burned.</p></div>
+        <div class="step rv"><div class="k">3</div><h3>Claim</h3><p>The whole dev buy goes into a public claimable airdrop, weighted by the fees you paid. Whatever is left after 30 days is burned.</p></div>
         <div class="step rv"><div class="k">4</div><h3>SOL every hour</h3><p>A public bot claims $CRATE’s creator fees every hour and sends the SOL to registered holders. Every payout is linked.</p></div>
       </div>
       <div class="split">
@@ -200,9 +221,9 @@ details p{padding:0 22px 22px;color:var(--mute);line-height:1.55;font-size:15.5p
       <div class="tl">
         <div class="ev rv"><div class="d">Jul 9, 2025</div><div class="t">pump.fun posts “airdrop coming soon” next to its $PUMP token sale.</div></div>
         <div class="ev rv"><div class="d">Jul 10, 2025</div><div class="t">Their COO says an airdrop won’t happen in the “immediate future”.</div></div>
-        <div class="ev rv"><div class="d">Apr 2026</div><div class="t">pump.fun burns $370M of bought-back PUMP, about 36% of circulating supply. Still no airdrop.</div></div>
+        <div class="ev rv"><div class="d">Apr 2026</div><div class="t">pump.fun burns $370M of bought-back PUMP, about 36% of circulating supply.</div></div>
         <div class="ev rv"><div class="d">Jul 2026</div><div class="t">One year later. Still coming soon.</div></div>
-        <div class="ev now rv"><div class="d">Today</div><div class="t"><span id="days2">—</span> days. So we built the crate.</div></div>
+        <div class="ev now rv"><div class="d">Today</div><div class="t">Still nothing. So we built the crate.</div></div>
       </div>
       <p class="src rv">Source: <a href="https://protos.com/its-been-365-days-since-pump-fun-promised-an-airdrop-was-coming-soon/" target="_blank" rel="noopener">Protos, “It’s been 365 days since Pump Fun promised an airdrop was ‘coming soon’”</a></p>
     </div>
@@ -215,8 +236,8 @@ details p{padding:0 22px 22px;color:var(--mute);line-height:1.55;font-size:15.5p
       <div class="faq">
         <details class="rv"><summary>Is this pump.fun’s airdrop?</summary><p>No. CRATE is independent and not affiliated with pump.fun. It’s a memecoin doing the thing they promised: paying back the people who paid the fees.</p></details>
         <details class="rv"><summary>How is my share decided?</summary><p>By the fees your wallet paid to pump.fun on the bonding curve and on PumpSwap before the snapshot, capped per wallet. The same weighting is used for the token claim and the hourly SOL.</p></details>
-        <details class="rv"><summary>Do I need to connect my wallet to check?</summary><p>No. Paste any address. The checker only reads public chain data.</p></details>
-        <details class="rv"><summary>Why does the checker only read my recent trades?</summary><p>Free Solana RPCs limit how much history one request can read, so the checker reads your latest transactions. The launch snapshot reads full histories.</p></details>
+        <details class="rv"><summary>Do I need to connect my wallet to open my crate?</summary><p>No. Paste any address. We only read public chain data.</p></details>
+        <details class="rv"><summary>Why does it only read my recent trades?</summary><p>Free Solana RPCs limit how much history one request can read, so the checker reads your latest transactions. The launch snapshot reads full histories.</p></details>
         <details class="rv"><summary>Where does the hourly SOL come from?</summary><p>From $CRATE’s creator fees. A public bot claims them every hour and sends them out. Every payout is posted with its Solscan link.</p></details>
         <details class="rv"><summary>Someone DMed me a claim link. Is it real?</summary><p>No. Claims only happen on this site. Nobody from CRATE will DM you, and nobody will ever ask for your seed phrase.</p></details>
       </div>
@@ -226,9 +247,11 @@ details p{padding:0 22px 22px;color:var(--mute);line-height:1.55;font-size:15.5p
   <section class="end">
     <h2 class="wm rv">crate</h2>
     <p class="lede rv">the airdrop they promised. <b>finally landing.</b></p>
-    <div class="ctas rv"><a class="btn" href="#check">Check your wallet</a></div>
+    <div class="ctas rv"><a class="btn" href="#top" id="endcheck">Open my crate</a></div>
   </section>
 </main>
+
+<div class="modal" id="modal" hidden><div class="mbg" data-close></div><div class="mbox" id="out" role="dialog" aria-modal="true" aria-label="Your crate"></div></div>
 <div class="toast" id="toast"></div>
 <div aria-live="polite" style="position:absolute;left:-9999px" id="live"></div>
 <script src="assets/config.js"></script>
@@ -237,22 +260,18 @@ details p{padding:0 22px 22px;color:var(--mute);line-height:1.55;font-size:15.5p
   var C = window.CRATE || {};
   var $ = function(id){ return document.getElementById(id); };
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // days since "airdrop coming soon" (Jul 9, 2025)
-  var days = Math.floor((Date.now() - Date.UTC(2025, 6, 9)) / 864e5);
-  $('days').textContent = days; $('days2').textContent = days;
-  // nav
   var nav = $('nav');
   addEventListener('scroll', function(){ nav.classList.toggle('solid', scrollY > 40); }, { passive: true });
   // falling crates
   var sky = $('sky');
   if (!reduce) {
-    var n = innerWidth < 700 ? 9 : 15;
+    var n = innerWidth < 700 ? 8 : 15;
     for (var i = 0; i < n; i++) {
       var d = document.createElement('div'); d.className = 'fall';
-      var size = 34 + Math.random() * 74, far = (size - 34) / 74;
+      var size = 32 + Math.random() * 70, far = (size - 32) / 70;
       d.style.width = size + 'px';
       d.style.left = (Math.random() * 100) + '%';
-      d.style.opacity = (0.28 + far * 0.4).toFixed(2);
+      d.style.opacity = (0.26 + far * 0.38).toFixed(2);
       var dur = 30 - far * 14 + Math.random() * 6;
       d.style.animationDuration = dur + 's';
       d.style.animationDelay = (-Math.random() * dur) + 's';
@@ -260,54 +279,75 @@ details p{padding:0 22px 22px;color:var(--mute);line-height:1.55;font-size:15.5p
       sky.appendChild(d);
     }
   }
-  // CA, buy, chart, X (only when set)
+  // focus the input from any "Open my crate" link
+  ['navcheck', 'endcheck'].forEach(function(id){ $(id).addEventListener('click', function(){ setTimeout(function(){ $('w').focus({ preventScroll: true }); }, 450); }); });
   var toast = function(t){ var e = $('toast'); e.textContent = t; e.classList.add('on'); clearTimeout(e._t); e._t = setTimeout(function(){ e.classList.remove('on'); }, 1600); };
+  // CA, buy, chart, X (only when set)
   if (C.ca) {
-    var ca = $('ca');
-    ca.innerHTML = '<span class="addr" title="' + C.ca + '">' + C.ca + '</span><button class="btn sm" id="cp">Copy CA</button><a class="btn sm ghost" target="_blank" rel="noopener" href="https://pump.fun/coin/' + C.ca + '">Buy</a><a class="btn sm ghost" target="_blank" rel="noopener" href="https://dexscreener.com/solana/' + C.ca + '">Chart</a>';
+    $('ca').innerHTML = '<span class="addr" title="' + C.ca + '">' + C.ca + '</span><button class="btn sm" id="cp" type="button">Copy CA</button><a class="btn sm ghost" target="_blank" rel="noopener" href="https://pump.fun/coin/' + C.ca + '">Buy</a><a class="btn sm ghost" target="_blank" rel="noopener" href="https://dexscreener.com/solana/' + C.ca + '">Chart</a>';
     $('cp').onclick = function(){ navigator.clipboard.writeText(C.ca).then(function(){ toast('CA copied'); }); };
   }
-  if (C.x) $('navr').innerHTML = '<a class="btn sm ghost" target="_blank" rel="noopener" href="' + C.x + '">X</a>';
+  if (C.x) $('navr').insertAdjacentHTML('afterbegin', '<a class="btn sm ghost" target="_blank" rel="noopener" href="' + C.x + '">X</a>');
   // reveal
   var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } }); }, { threshold: 0.12 });
-  document.querySelectorAll('.rv').forEach(function(el, i){ el.style.transitionDelay = ((i % 4) * 70) + 'ms'; io.observe(el); });
-  setTimeout(function(){ document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('vis'); }); }, 4000);
+  var watch = function(){ document.querySelectorAll('.rv:not(.vis)').forEach(function(el, i){ el.style.transitionDelay = ((i % 4) * 70) + 'ms'; io.observe(el); }); };
+  watch();
+  setTimeout(function(){ document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('vis'); }); }, 5000);
+  // live fees (DefiLlama via /api/stats); the section stays hidden if the read fails
+  var money = function(v){ return v >= 1e9 ? '$' + (v / 1e9).toFixed(2) + 'B' : v >= 1e6 ? '$' + (v / 1e6).toFixed(1) + 'M' : '$' + Math.round(v / 1e3) + 'K'; };
+  fetch('/api/stats').then(function(r){ return r.ok ? r.json() : null; }).then(function(s){
+    if (!s || !s.day) return;
+    var sec = $('waited'); sec.hidden = false; watch();
+    var els = sec.querySelectorAll('[data-k]'), started = false;
+    var run = function(){
+      if (started) return; started = true;
+      els.forEach(function(el){
+        var to = s[el.getAttribute('data-k')] || 0, t0 = performance.now(), D = reduce ? 1 : 1400;
+        (function tick(now){ var p = Math.min(1, (now - t0) / D), e = 1 - Math.pow(1 - p, 3); el.textContent = money(to * e); if (p < 1) requestAnimationFrame(tick); })(t0);
+      });
+    };
+    new IntersectionObserver(function(es, o){ if (es[0].isIntersecting) { run(); o.disconnect(); } }, { threshold: 0.3 }).observe(sec);
+    setTimeout(run, 6000);
+  }).catch(function(){});
   // checker
-  var f = $('f'), w = $('w'), go = $('go'), out = $('out'), err = $('err');
+  var f = $('f'), w = $('w'), go = $('go'), out = $('out'), err = $('err'), modal = $('modal');
   var fmt = function(x, d){ return Number(x).toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d }); };
   var date = function(t){ return t ? new Date(t * 1000).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '—'; };
   var short = function(a){ return a.slice(0, 4) + '…' + a.slice(-4); };
+  var close = function(){ modal.hidden = true; document.body.style.overflow = ''; };
+  modal.addEventListener('click', function(e){ if (e.target.hasAttribute('data-close')) close(); });
+  addEventListener('keydown', function(e){ if (e.key === 'Escape' && !modal.hidden) close(); });
   f.addEventListener('submit', function(ev){
     ev.preventDefault();
     var a = w.value.trim();
     err.hidden = true;
     if (!/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(a)) { err.textContent = 'That is not a Solana address.'; err.hidden = false; return; }
-    go.disabled = true; go.textContent = 'Reading the chain…'; out.innerHTML = '';
+    go.disabled = true; go.textContent = 'Opening…';
     fetch('/api/check?wallet=' + encodeURIComponent(a)).then(function(r){ return r.json().then(function(j){ return { ok: r.ok, j: j }; }); }).then(function(res){
       var j = res.j;
       if (!res.ok || j.error) { err.textContent = j.error || 'Something went wrong. Try again.'; err.hidden = false; return; }
       var has = j.trades > 0;
-      var share = 'pump.fun took ' + fmt(j.feesPaid, 3) + ' SOL in fees from me. the airdrop they promised in July 2025 never came. so I checked my crate:';
-      out.innerHTML = '<div class="receipt"><div class="r-top"><span>crate check</span><span class="mono">' + short(j.wallet) + '</span></div><div class="r-body">' +
+      var share = 'pump.fun took ' + fmt(j.feesPaid, 3) + ' SOL in fees from me. the airdrop they promised never came. so I opened my crate:';
+      out.innerHTML = '<div class="receipt"><div class="r-top"><span>your crate</span><span class="mono">' + short(j.wallet) + '</span><button class="r-x" data-close aria-label="Close">×</button></div><div class="r-body">' +
         (has ?
           '<div class="row"><span>pump.fun trades found</span><span>' + j.trades + '</span></div>' +
           '<div class="row"><span>coins traded</span><span>' + j.coins + '</span></div>' +
           '<div class="row"><span>SOL traded</span><span>' + fmt(j.solVolume, 2) + ' SOL</span></div>' +
-          '<div class="row"><span>fees paid to pump.fun</span><span>' + fmt(j.feesPaid, 3) + ' SOL</span></div>' +
-          '<div class="row"><span>fees paid to coin devs</span><span>' + fmt(j.creatorFees, 3) + ' SOL</span></div>' +
+          '<div class="row"><span>fees paid to pump.fun</span><span>' + fmt(j.feesPaid, 4) + ' SOL</span></div>' +
+          '<div class="row"><span>fees paid to coin devs</span><span>' + fmt(j.creatorFees, 4) + ' SOL</span></div>' +
           '<div class="row"><span>first trade in this read</span><span>' + date(j.firstTrade) + '</span></div>' +
           '<div class="row"><span>airdrop they promised</span><span class="bad">still coming soon</span></div>' +
-          '<div class="row big"><span>your crate weight</span><span>' + fmt(j.feesPaid, 3) + ' SOL</span></div>'
+          '<div class="row big"><span>your crate weight</span><span>' + fmt(j.feesPaid, 4) + ' SOL</span></div>'
         :
-          '<div class="row"><span>pump.fun trades found</span><span>0</span></div>' +
-          '<div class="row"><span>airdrop they promised</span><span class="bad">still coming soon</span></div>'
+          '<div class="r-empty">No pump.fun trades in this wallet’s last ' + j.scanned + ' transactions. Try the wallet you trade with.</div>'
         ) +
-        '</div><div class="r-foot"><small>read from your last ' + j.scanned + ' transactions' + (j.estimated ? ' · ' + j.estimated + ' older trades estimated at 1%' : '') + '</small>' +
+        '</div><div class="r-foot"><small>read from the last ' + j.scanned + ' transactions' + (j.estimated ? ' · ' + j.estimated + ' older trades estimated at 1%' : '') + '</small>' +
         (has ? '<a class="btn sm" target="_blank" rel="noopener" href="https://x.com/intent/tweet?text=' + encodeURIComponent(share) + '&url=' + encodeURIComponent(location.origin) + '">Share on X</a>' : '') +
         '</div></div>';
+      modal.hidden = false; document.body.style.overflow = 'hidden';
       $('live').textContent = has ? 'Found ' + j.trades + ' pump.fun trades.' : 'No pump.fun trades found.';
     }).catch(function(){ err.textContent = 'Solana is busy right now. Try again in a minute.'; err.hidden = false; })
-      .then(function(){ go.disabled = false; go.textContent = 'Check'; });
+      .then(function(){ go.disabled = false; go.textContent = 'Open my crate'; });
   });
 })();
 </script>
