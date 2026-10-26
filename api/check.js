@@ -4,7 +4,7 @@ const crypto = require('crypto');
 
 const PUMP = '6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P';
 const AMM = 'pAMMBay6oceH9fJKBRHGP5D4bD4sWpmSwMn52FMfXEA';
-const RPCS = [process.env.RPC_URL, 'https://api.mainnet-beta.solana.com', 'https://solana-rpc.publicnode.com'].filter(Boolean);
+const RPCS = [process.env.RPC_URL, 'https://solana-rpc.publicnode.com', 'https://api.mainnet-beta.solana.com', 'https://solana.drpc.org'].filter(Boolean);
 const DEEP = !!process.env.RPC_URL;
 
 const ALPH = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
@@ -51,28 +51,30 @@ async function rpc(method, params) {
   }
   throw new Error('rpc ' + last);
 }
+async function batchOn(url, method, items) {
+  const body = items.map((x) => ({ jsonrpc: '2.0', id: x.i, method, params: x.p }));
+  const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
+  if (!r.ok) return {};
+  const j = await r.json();
+  const got = {};
+  if (Array.isArray(j)) for (const x of j) if (x && x.result) got[x.id] = x.result;
+  return got;
+}
+// fill every slot it can: batches on each RPC in turn, then a few single calls for whatever is still missing
 async function rpcMany(method, list, size) {
   const out = new Array(list.length).fill(null);
-  for (let s = 0; s < list.length; s += size) {
-    const chunk = list.slice(s, s + size);
-    let done = false;
-    for (const url of RPCS) {
-      try {
-        const body = chunk.map((p, i) => ({ jsonrpc: '2.0', id: i, method, params: p }));
-        const r = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) });
-        if (!r.ok) continue;
-        const j = await r.json();
-        if (!Array.isArray(j)) continue;
-        let got = 0;
-        for (const x of j) if (x && x.result) { out[s + x.id] = x.result; got++; }
-        if (got) { done = true; break; }
-      } catch (e) { /* next */ }
+  let missing = list.map((p, i) => ({ i, p }));
+  for (const url of RPCS) {
+    if (!missing.length) break;
+    for (let s = 0; s < missing.length; s += size) {
+      try { const got = await batchOn(url, method, missing.slice(s, s + size)); for (const k in got) out[k] = got[k]; } catch (e) { /* next */ }
     }
-    if (!done) {          // batch refused: single calls, a few at a time
-      let k = 0;
-      const worker = async () => { while (k < chunk.length) { const i = k++; try { out[s + i] = await rpc(method, chunk[i]); } catch (e) { out[s + i] = null; } } };
-      await Promise.all(Array.from({ length: 6 }, worker));
-    }
+    missing = missing.filter((x) => !out[x.i]);
+  }
+  if (missing.length) {
+    const left = missing.slice(0, 40); let k = 0;
+    const worker = async () => { while (k < left.length) { const x = left[k++]; try { out[x.i] = await rpc(method, x.p); } catch (e) { /* skip */ } } };
+    await Promise.all(Array.from({ length: 5 }, worker));
   }
   return out;
 }
@@ -143,7 +145,7 @@ module.exports = async (req, res) => {
     const sigs = await rpc('getSignaturesForAddress', [w, { limit: 1000 }]);
     const ok = sigs.filter((s) => !s.err);
     const scan = ok.slice(0, DEEP ? 600 : 120);
-    const txs = await rpcMany('getTransaction', scan.map((s) => [s.signature, txOpts]), DEEP ? 100 : 30);
+    const txs = await rpcMany('getTransaction', scan.map((s) => [s.signature, txOpts]), DEEP ? 100 : 20);
     let trades = 0, vol = 0, fee = 0, cfee = 0, est = 0, first = null, last = null;
     const coins = new Set();
     txs.forEach((tx, i) => {
